@@ -84,22 +84,22 @@ public class Consumer extends Thread {
         }
         long nMessages = 0;
         long lastChecked = System.currentTimeMillis();
-        while (true) {
-            try {
-                boolean hasMoreMessages = readNextMessage();
-                if (!hasMoreMessages) {
-                    return;
-                }
+        try {
+            while (true) {
+                    boolean hasMoreMessages = readNextMessage();
+                    if (!hasMoreMessages) {
+                        return;
+                    }
 
-                long now = System.currentTimeMillis();
-                if (nMessages++ % 10000 == 0 ||
-                        (now - lastChecked) > 10 * 60 * 1000) {
-                    lastChecked = now;
-                    checkUploadPolicy();
-                }
-            } finally {
-                checkUploadPolicy();
+                    long now = System.currentTimeMillis();
+                    if (nMessages++ % 10000 == 0 ||
+                            (now - lastChecked) > 10 * 60 * 1000) {
+                        lastChecked = now;
+                        checkUploadPolicy();
+                    }
             }
+        } finally {
+            checkUploadPolicy();
         }
     }
 
