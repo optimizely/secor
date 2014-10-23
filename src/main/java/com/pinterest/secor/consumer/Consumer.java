@@ -113,7 +113,7 @@ public class Consumer extends Thread {
 
     // @return whether there are more messages
     private boolean readNextMessage() {
-        Message rawMessage;
+        Message rawMessage = null;
         try {
             boolean hasNext = mMessageReader.hasNext();
             if (!hasNext) {
