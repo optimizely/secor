@@ -306,5 +306,24 @@
                 </executions>
             </plugin>
         </plugins>
+        <extensions>
+            <extension>
+                <groupId>org.springframework.build</groupId>
+                <artifactId>aws-maven</artifactId>
+                <version>5.0.0.RELEASE</version>
+            </extension>
+        </extensions>
     </build>
+    <distributionManagement>
+        <repository>
+            <name>S3 Release Repository</name>
+            <id>maven-s3-release-repo</id>
+            <url>s3://optimizely-maven-repo</url>
+        </repository>
+        <snapshotRepository>
+            <name>S3 Snapshot Repository</name>
+            <id>maven-s3-snapshot-repo</id>
+            <url>s3://optimizely-maven-repo</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>
